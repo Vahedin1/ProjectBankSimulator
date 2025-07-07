@@ -1,5 +1,6 @@
 from transaction import Transaction
 from models import Account
+from decorators import log_transaction
 
 
 class SavingsAccount(Account):
@@ -8,11 +9,13 @@ class SavingsAccount(Account):
         super().__init__(owner, balance)
         self.interest_rate = interest_rate
         
+    @log_transaction  
     def deposit(self, amount: float):
         if amount > 0:
             self.balance += amount
             self.record_transaction(amount, "deposit")
-            
+    
+    @log_transaction        
     def withdraw(self, amount: float):
         if 0 < amount <= self.balance:
             self.balance -= amount
