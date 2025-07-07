@@ -41,3 +41,10 @@ class Account(ABC):
     def record_transaction(self, amount, transaction_type):
         transaction = Transaction(amount, transaction_type)
         self.transactions.append(transaction)
+        
+    def show_transactions(self):
+        print(f"\nTransaction History for Account {self.account_number}: ")
+        if not self.transactions:
+            print("  No transactions found.")
+        for transaction in self.transactions:
+            print(f"  {transaction}")

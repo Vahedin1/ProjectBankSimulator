@@ -11,12 +11,12 @@ class SavingsAccount(Account):
     def deposit(self, amount: float):
         if amount > 0:
             self.balance += amount
-            self.record_transactions(amount, "deposit")
+            self.record_transaction(amount, "deposit")
             
     def withdraw(self, amount: float):
         if 0 < amount <= self.balance:
             self.balance -= amount
-            self.record_transactions(amount, "withdraw")
+            self.record_transaction(amount, "withdraw")
         else:
             print("Insufficient funds.")
         
@@ -34,12 +34,12 @@ class CheckingAccount(Account):
     def deposit(self, amount: float):
         if amount > 0:
             self.balance += amount
-            self.record_transactions(amount, "deposit")
+            self.record_transaction(amount, "deposit")
             
     def withdraw(self, amount: float):
         if 0 < amount <= self.balance + self.overdraft_limit:
             self.balance -= amount  
-            self.record_transactions(amount, "withdraw")
+            self.record_transaction(amount, "withdraw")
         else:
             print("Overdraft limit exceeded.")
         
